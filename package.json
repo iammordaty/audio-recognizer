@@ -1,0 +1,33 @@
+{
+  "name": "audio-recognizer",
+  "version": "0.0.1",
+  "description": "Audio recognition services API wrapper for Node.js",
+  "keywords": [
+    "audio",
+    "recognition",
+    "fingerprinting",
+    "node",
+    "acrcloud",
+    "auddmusic"
+  ],
+  "main": "./index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/iammordaty/audio-recognizer.git"
+  },
+  "author": "iammordaty",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/iammordaty/audio-recognizer/issues"
+  },
+  "homepage": "https://github.com/iammordaty/audio-recognizer#readme",
+  "dependencies": {
+    "acrcloud": "^1.3.0",
+    "auddapilib": "github:AudDMusic/NodeJS-SDK",
+    "file-system-cache": "^1.0.5",
+    "minimist": "^1.2.0"
+  },
+  "devDependencies": {
+    "eslint": "^5.9.0"
+  }
+}
