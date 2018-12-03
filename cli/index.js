@@ -2,44 +2,35 @@
 
 'use strict';
 
-const fs = require('fs');
+const { basename } = require('path');
+const { existsSync, lstatSync } = require('fs');
 const minimist = require('minimist');
-const path = require('path');
 
-const { name, version } = require('../package.json');
-const printResults = require('./output.js');
+const { DEFAULT_CLI_CONFIG_PATH, loadConfig, printHelp, printResults } = require('./cli.js');
 const Recognizer = require('../lib/recognizer');
 
-const DEFAULT_CLI_CONFIG_PATH = './cli/config.json';
-
 const argv = minimist(process.argv.slice(2));
-const fragmentPathname = argv._.shift();
 
-if (!fragmentPathname || argv.help || argv.h) {
-    console.log(`CLI for ${name} ${version}.\n`);
-    console.log(`Usage: ${path.basename(__filename)} [-c config-path] <fragment-path>\n`);
-    console.log('Where:');
-    console.log(`  -c <config-path>     Path to the config file (defaults to "${DEFAULT_CLI_CONFIG_PATH}").`);
-    console.log('  <fragment-path>      Path to the fragment of the track to be recognized (required).');
-    console.log('                       Suggested fragment duration is 15 - 20 seconds.');
-    console.log('');
+if (!argv._.length || argv.help || argv.h) {
+    printHelp();
 
     process.exit(1);
 }
 
-const configPathname = argv.c || DEFAULT_CLI_CONFIG_PATH;
+const config = argv.c || DEFAULT_CLI_CONFIG_PATH;
+const fragment = argv._.shift();
 
-[ fragmentPathname, configPathname ].forEach(pathname => {
-    if (!fs.existsSync(pathname) || !fs.lstatSync(pathname).isFile()) {
-        console.log(`"${path.basename(pathname)}" does not exist or is not a regular file.`);
+const missing = [ fragment, config ].find(pathname => !(existsSync(pathname) && lstatSync(pathname).isFile()));
 
-        process.exit(2);
-    }
-});
+if (missing) {
+    console.error(`"${basename(missing)}" does not exist or is not a regular file.`);
 
-const config = JSON.parse(fs.readFileSync(configPathname));
-const recognizer = new Recognizer(config);
+    process.exit(2);
+}
 
-recognizer.recognize(fragmentPathname)
+const loadedConfig = loadConfig(config);
+const recognizer = new Recognizer(loadedConfig);
+
+recognizer.recognize(fragment)
     .then(results => printResults(results))
     .catch(err => console.error('An error occurred', err));
