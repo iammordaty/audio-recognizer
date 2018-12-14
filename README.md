@@ -75,7 +75,7 @@ Type `node cli -h` for more information.
  - [ACRCloud HTTP API Reference](https://www.acrcloud.com/docs/acrcloud/audio-fingerprinting-api)
  - [AudDMusic HTTP API Reference](https://docs.audd.io)
 
- ## See also
+## See also
 
  - [soundcloud-track-recognizer](https://github.com/iammordaty/soundcloud-track-recognizer)
  - [soundcloud-track-recognizer-cli](https://github.com/iammordaty/soundcloud-track-recognizer-cli)
