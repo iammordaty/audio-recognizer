@@ -8,6 +8,7 @@ Node.js module for audio recognition services.
 - [Installation](#installation)
 - [Usage](#usage)
 - [Further information](#further-information)
+- [See also](#see-also)
 - [License](#license)
 
 ## Getting Started
@@ -31,18 +32,18 @@ Suggested fragment duration is 15 - 20 seconds.
 const AudioRecognizer = require('audio-recognizer');
 
 const config = {
-    "cache_success_responses": true,
-    "cache_dir": "./cache",
-    "normalize_results": true,
-    "acrcloud": {
-        "host": "",
-        "access_key": "",
-        "access_secret": "",
-        "endpoint": "/v1/identify",
-        "signature_version": "1",
-        "data_type": "audio"
+    cache_success_responses: true,
+    cache_dir: "./cache",
+    normalize_results: true,
+    acrcloud: {
+        host: "",
+        access_key: "",
+        access_secret: "",
+        endpoint: "/v1/identify",
+        signature_version: "1",
+        data_type: "audio"
     },
-    "auddmusic": {
+    auddmusic: {
         "api_token": ""
     }
 }
@@ -73,6 +74,11 @@ Type `node cli -h` for more information.
 
  - [ACRCloud HTTP API Reference](https://www.acrcloud.com/docs/acrcloud/audio-fingerprinting-api)
  - [AudDMusic HTTP API Reference](https://docs.audd.io)
+
+ ## See also
+
+ - [soundcloud-track-recognizer](https://github.com/iammordaty/soundcloud-track-recognizer)
+ - [soundcloud-track-recognizer-cli](https://github.com/iammordaty/soundcloud-track-recognizer-cli)
 
 ## License
 
