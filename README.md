@@ -33,18 +33,18 @@ const AudioRecognizer = require('audio-recognizer');
 
 const config = {
     cache_success_responses: true,
-    cache_dir: "./cache",
+    cache_dir: './cache',
     normalize_results: true,
     acrcloud: {
-        host: "",
-        access_key: "",
-        access_secret: "",
-        endpoint: "/v1/identify",
-        signature_version: "1",
-        data_type: "audio"
+        host: '',
+        access_key: '',
+        access_secret: '',
+        endpoint: '/v1/identify',
+        signature_version: '1',
+        data_type: 'audio'
     },
     auddmusic: {
-        "api_token": ""
+        api_token: ''
     }
 }
 
